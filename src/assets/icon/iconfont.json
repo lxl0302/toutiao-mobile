@@ -1,0 +1,23 @@
+{
+  "id": "2248679",
+  "name": "采编pp",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "18639724",
+      "name": "jieshushijian",
+      "font_class": "jieshushijian",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "18639723",
+      "name": "kaishishijian",
+      "font_class": "kaishishijian",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    }
+  ]
+}
