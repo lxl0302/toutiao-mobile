@@ -1,0 +1,30 @@
+body {
+  background-color: #ededed;
+}
+.app-nav-bar {
+  background-color: #4c7bfe !important;
+  // .van-nav-bar__content {
+    // height: 62px;
+    // line-height: 62px;
+  // }
+  .van-nav-bar__title {
+    font-size: 21px;
+    font-weight: 400;
+    color: #fff;
+  }
+}
+.app-tab {
+  .van-tab {
+    font-weight: 500;
+  }
+  .van-hairline--bottom {
+    border-color: #4c7bfe;
+  }
+}
+.search-bar {
+  margin: 10px;
+  padding: 0px !important;
+}
+.van-tabs__line {
+  background-color: #4c7bfe !important;
+}

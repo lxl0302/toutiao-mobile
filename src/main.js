@@ -6,6 +6,7 @@ import store from './store'
 import 'amfe-flexible'
 import '@/assets/icon/iconfont.js'
 import '@/assets/icon/iconfont.css'
+import '@/styles/index.scss'
 
 import IconSvg from '@/utils/icon/index.vue'
 import Vant from 'vant'
