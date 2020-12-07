@@ -1,18 +1,20 @@
 <template>
   <div class="task-list">
-    <van-list
-      v-model="loading"
-      :finished="finished"
-      finished-text="没有更多了"
-      @load="onLoad"
-    >
-      <task-item
-        class="task-item"
-        v-for="(item, index) in list"
-        :key="index"
-        :itemData="item"
-      />
-    </van-list>
+    <van-pull-refresh v-model="isRefreshLoading" @refresh="onRefresh">
+      <van-list
+        v-model="loading"
+        :finished="finished"
+        finished-text="没有更多了"
+        @load="onLoad"
+      >
+        <task-item
+          class="task-item"
+          v-for="(item, index) in list"
+          :key="index"
+          :itemData="item"
+        />
+      </van-list>
+    </van-pull-refresh>
   </div>
 </template>
 
@@ -42,18 +44,29 @@ export default {
     return {
       list: [],
       loading: false,
-      finished: false
+      finished: false,
+      isRefreshLoading: false // 下拉刷新
     }
   },
-  created () { },
-  mounted () {
-  },
+  created () {},
+  mounted () {},
   watch: {
     searchValue (val) {
       this.getSearchResult(val, 0)
     }
   },
   methods: {
+    // 下拉刷新
+    onRefresh () {
+      // 下拉刷新， 组件展示loading状态
+      // 1.请求获取数据
+      // 2.把数据放到数据列表中（像顶部追加）
+      // 3.关闭刷新状态
+      setTimeout(() => {
+        this.onLoad()
+        this.isRefreshLoading = false
+      }, 500)
+    },
     async getSearchResult (val, type) {
       // 只有当前激活组件的list参与搜索
       if (this.active === this.listData.taskState) {
