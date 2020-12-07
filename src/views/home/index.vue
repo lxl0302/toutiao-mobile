@@ -17,8 +17,16 @@
         </template>
       </van-search>
       <!-- 任务列表 -->
-      <van-tab v-for="(item, index) in tabDatas" :title="item.name" :key="index">
-        <task-list :listData="item"></task-list>
+      <van-tab
+        v-for="(item, index) in tabDatas"
+        :title="item.name"
+        :key="index"
+      >
+        <task-list
+          :active="active"
+          :listData="item"
+          :searchValue="searchVal2"
+        ></task-list>
       </van-tab>
     </van-tabs>
   </div>
@@ -37,33 +45,41 @@ export default {
       active: 0, // 默认显示的tab
       tabDatas: [
         {
-          name: '全部'
+          name: '全部',
+          taskState: 0
         },
         {
-          name: '待确认'
+          name: '待确认',
+          taskState: 1
         },
         {
-          name: '待处理'
+          name: '待处理',
+          taskState: 2
         },
         {
-          name: '处理中'
+          name: '处理中',
+          taskState: 3
         },
         {
-          name: '已提交'
+          name: '已提交',
+          taskState: 4
         },
         {
-          name: '审核中'
+          name: '审核中',
+          taskState: 5
         }
       ],
-      searchVal: ''
+      searchVal: '', // 输入的搜索值
+      searchVal2: '' // list组件接受的搜索值
     }
   },
   computed: {},
-  created () {},
-  mounted () {},
+  created () { },
+  mounted () {
+  },
   methods: {
     onSearch () {
-      console.log('data', this.searchVal)
+      this.searchVal2 = this.searchVal
     }
   }
 }

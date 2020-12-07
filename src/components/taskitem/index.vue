@@ -1,32 +1,32 @@
 <template>
-  <div class="item-container">
+  <div class="item-container" @click="test">
     <div class="item-title">
-      <div class="title-left">{{ itemData.taskTitle }}</div>
+      <div class="title-left">{{ itemData.taskName }}</div>
       <div
         :class="[
           'title-right',
-          itemData.taskStatus === '待确认'
+          itemData.taskState === '1'
             ? 'statusOne'
-            : itemData.taskStatus === '待处理'
+            : itemData.taskState === '2'
             ? 'statusTwo'
-            : itemData.taskStatus === '处理中'
+            : itemData.taskState === '3'
             ? 'statusThree'
-            : 'statusOne',
+            : 'statusOne'
         ]"
       >
-        {{ itemData.taskStatus }}
+        {{ taskStateName(itemData.taskState) }}
       </div>
     </div>
     <div class="item-content">
       <ul>
-        <li class="frist-li">{{ itemData.taskId }}</li>
+        <li class="frist-li">任务编号 - {{ itemData.taskNum }}</li>
         <li class="other-li">
-          <icon iconClass="kaishishijian" />&nbsp;开始时间:{{
+          <icon-svg iconClass="kaishishijian" />&nbsp;开始时间:{{
             itemData.startTime
           }}
         </li>
         <li class="other-li">
-          <icon iconClass="jieshushijian" />&nbsp;结束时间:{{
+          <icon-svg iconClass="jieshushijian" />&nbsp;结束时间:{{
             itemData.endTime
           }}
         </li>
@@ -36,12 +36,9 @@
 </template>
 
 <script>
-import icon from '@/utils/icon'
-
 export default {
   name: 'taskitem',
   components: {
-    icon
   },
   props: {
     itemData: {
@@ -55,9 +52,27 @@ export default {
     return {}
   },
   computed: {},
-  created () {},
-  mounted () {},
-  methods: {}
+  created () { },
+  mounted () { },
+  methods: {
+    taskStateName (val) {
+      switch (val) {
+        case '1':
+          return '待确认'
+        case '2':
+          return '待处理'
+        case '3':
+          return '处理中'
+        case '4':
+          return '已提交'
+        case '5':
+          return '审核中'
+      }
+    },
+    test () {
+      console.log('点击任务:', this.itemData)
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
