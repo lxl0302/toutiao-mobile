@@ -1,5 +1,5 @@
 <template>
-  <div class="item-container" @click="test">
+  <div class="item-container" @click="gotoTask">
     <div class="item-title">
       <div class="title-left">{{ itemData.taskName }}</div>
       <div
@@ -11,6 +11,10 @@
             ? 'statusTwo'
             : itemData.taskState === '3'
             ? 'statusThree'
+            : itemData.taskState === '4'
+            ? 'statusFour'
+            : itemData.taskState === '5'
+            ? 'statusFive'
             : 'statusOne'
         ]"
       >
@@ -69,8 +73,13 @@ export default {
           return '审核中'
       }
     },
-    test () {
-      console.log('点击任务:', this.itemData)
+    gotoTask () {
+      this.$router.push({
+        name: 'taskdetails',
+        params: {
+          taskAreaId: this.itemData.id
+        }
+      })
     }
   }
 }
@@ -108,6 +117,14 @@ export default {
     .statusThree {
       color: #417a15;
       background-color: #e0e4c8;
+    }
+    .statusFour {
+      color: #43316e;
+      background-color: #b0aaaa;
+    }
+    .statusFive {
+      color: #6a3e31;
+      background-color: #bcb9a5;
     }
   }
   .item-content {

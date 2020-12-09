@@ -21,6 +21,8 @@ Axios.defaults.headers.post['Content-Type'] = 'application/json'
 Vue.component('icon-svg', IconSvg)
 Vue.use(Vant)
 
+Vue.prototype.$EventBus = new Vue()
+
 Vue.config.productionTip = false
 
 new Vue({

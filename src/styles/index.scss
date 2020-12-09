@@ -12,6 +12,15 @@ body {
     font-weight: 400;
     color: #fff;
   }
+  .van-nav-bar__left {
+    font-size: 16px;
+    .van-nav-bar__text {
+      color: #fff;
+    }
+    .van-icon {
+      color: #fff;
+    }
+  }
 }
 .app-tab {
   .van-tab {

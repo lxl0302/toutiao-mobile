@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "18724717",
+      "name": "xiayi",
+      "font_class": "xiayi",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "18724710",
+      "name": "shangyi",
+      "font_class": "shangyi",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
       "icon_id": "18639724",
       "name": "jieshushijian",
       "font_class": "jieshushijian",

@@ -48,8 +48,8 @@ export default {
       isRefreshLoading: false // 下拉刷新
     }
   },
-  created () {},
-  mounted () {},
+  created () { },
+  mounted () { },
   watch: {
     searchValue (val) {
       this.getSearchResult(val, 0)
@@ -74,7 +74,7 @@ export default {
           headers: {
             'TW-ProjectName': 'ansotest001',
             'TW-App': 'android',
-            'TW-Authorization': '43B6182A895A41A089E2652E2B520391'
+            'TW-Authorization': '2CB44630AB124E92922CEDA2C3BAA809'
           },
           method: 'GET',
           url: 'outwork/server/task',
@@ -102,7 +102,7 @@ export default {
         headers: {
           'TW-ProjectName': 'ansotest001',
           'TW-App': 'android',
-          'TW-Authorization': '43B6182A895A41A089E2652E2B520391'
+          'TW-Authorization': '2CB44630AB124E92922CEDA2C3BAA809'
         },
         method: 'GET',
         url: 'outwork/server/task/user',
@@ -111,6 +111,7 @@ export default {
           taskState: this.listData.taskState
         }
       })
+      console.log(data)
       const listdatas = data.data.filter((item) => {
         return item.taskState !== '6'
       })
