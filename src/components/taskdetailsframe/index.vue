@@ -70,7 +70,6 @@ export default {
   },
   computed: {},
   mounted () {
-    console.log('areaDetaisData', this.areaDetaisData)
   },
   methods: {
     detailsremove () {
@@ -98,7 +97,6 @@ export default {
           taskData: this.areaDetaisData.id
         }
       })
-      // console.log(this.areaDetaisData.id)
     }
   }
 }

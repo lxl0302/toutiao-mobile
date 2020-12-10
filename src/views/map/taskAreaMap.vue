@@ -76,7 +76,6 @@ export default {
       }
       this.areaFea = L.geoJson(taskAreaFea)
       this.areaFea.addTo(this.map)
-      console.log(this.areaFea.getBounds())
       this.map.fitBounds(this.areaFea.getBounds(), {
         paddingTopLeft: [0, -300]
       })

@@ -11,6 +11,7 @@
     <!-- 地图容器 -->
     <div class="map-container">
       <task-area-map
+        v-if="detailsIsShow"
         :areaGeoData="areaGeoData"
         :moveDeatialFram="moveDeatialFram"
       />
@@ -68,7 +69,7 @@ export default {
         headers: {
           'TW-ProjectName': 'ansotest001',
           'TW-App': 'android',
-          'TW-Authorization': '2CB44630AB124E92922CEDA2C3BAA809'
+          'TW-Authorization': '79FA607A95E645DD825BEF92A69B4AB8'
         },
         method: 'GET',
         url: 'outwork/server/taskdetail',
