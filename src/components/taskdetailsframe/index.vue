@@ -115,7 +115,7 @@ export default {
     width: 300px;
     height: 26px;
     font-size: 23px;
-    // background-color: gray;
+    color: #c2bdbdb9;
     text-align: center;
   }
   .detail-content {

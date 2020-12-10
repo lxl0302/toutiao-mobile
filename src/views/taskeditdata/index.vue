@@ -12,16 +12,20 @@
     <div class="map-container">
       <task-details-map/>
     </div>
+    <!-- 下面导航栏 -->
+    <tab-bar :tabData="tabData"/>
   </div>
 </template>
 
 <script>
 import taskDetailsMap from '@/views/map/taskDetailsMap'
+import tabBar from '@/components/tabbar'
 
 export default {
   name: 'taskEditData',
   components: {
-    taskDetailsMap
+    taskDetailsMap,
+    tabBar
   },
   props: {
     taskData: {
@@ -33,7 +37,28 @@ export default {
   },
   data () {
     return {
-
+      tabData: [
+        {
+          iconName: 'caijidian',
+          iconText: '采点'
+        },
+        {
+          iconName: 'caijixian',
+          iconText: '采线'
+        },
+        {
+          iconName: 'bianji',
+          iconText: '编辑'
+        },
+        {
+          iconName: 'gongju',
+          iconText: '工具'
+        },
+        {
+          iconName: 'renwu',
+          iconText: '任务'
+        }
+      ]
     }
   },
   computed: {},
