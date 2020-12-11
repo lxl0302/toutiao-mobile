@@ -1,15 +1,20 @@
 <template>
   <div class="tab-container">
-    <div :class="['flex-item', isClick === true ? 'onclick' : 'unclick']" @click="tabClick"
+    <div
+      :class="['flex-item', isClick === item.iconName ? 'onclick' : 'unclick']"
+      @click="tabClick(item.iconName, isClick === item.iconName)"
       v-for="(item, index) in tabData"
-      :key="index">
+      :key="index"
+    >
       <icon-svg :iconClass="item.iconName" />
-      <div class="aoligei">{{item.iconText}}</div>
+      <div class="aoligei">{{ item.iconText }}</div>
     </div>
   </div>
 </template>
 
 <script>
+import { Toast } from 'vant'
+
 export default {
   name: 'tabBar',
   components: {},
@@ -23,16 +28,30 @@ export default {
   },
   data () {
     return {
-      isClick: false
+      isClick: null,
+      clickStatus: null
     }
   },
   computed: {},
-  created () {},
-  mounted () {},
+  created () { },
+  mounted () { },
   methods: {
-    tabClick () {
-      this.isClick = !this.isClick
-      // console.log('点击事件,状态：', this.isClick, '类别：', itemData.tabText)
+    tabClick (val, statue) {
+      if (this.clickStatus) {
+        if (this.isClick === val) {
+          this.isClick = 'close'
+          this.clickStatus = false
+          // 发送取消事件
+          this.$EventBus.$emit('tabEvent', val, false)
+        } else {
+          Toast('请先把之前事件结束掉')
+        }
+      } else {
+        this.isClick = val
+        this.clickStatus = true
+        // 发送结束事件
+        this.$EventBus.$emit('tabEvent', val, true)
+      }
     }
   }
 }
@@ -57,9 +76,9 @@ export default {
   }
 }
 .unclick {
-  color: #999999
+  color: #999999;
 }
 .onclick {
-  color: #4c7bfe
+  color: #4c7bfe;
 }
 </style>

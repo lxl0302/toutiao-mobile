@@ -10,10 +10,10 @@
     />
     <!-- 地图容器 -->
     <div class="map-container">
-      <task-details-map/>
+      <task-details-map />
     </div>
     <!-- 下面导航栏 -->
-    <tab-bar :tabData="tabData"/>
+    <tab-bar :tabData="tabData" />
   </div>
 </template>
 
@@ -63,7 +63,6 @@ export default {
   },
   computed: {},
   mounted () {
-
   },
   methods: {
     goTaskArea () {

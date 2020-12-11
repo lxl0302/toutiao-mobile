@@ -1,10 +1,5 @@
 <template>
-  <div style="height:100%;width:100%;">
-    <div class="text-option-div" @click="testOptions"></div>
-    <div class="text-option-div2" @click="testOptions2"></div>
-    <div class="map-container" id="map">
-  </div>
-  </div>
+  <div class="map-container" id="map"></div>
 </template>
 
 <script>
@@ -23,9 +18,11 @@ export default {
   },
   computed: {},
   mounted () {
+    this.$EventBus.$on('tabEvent', (type, status) => {
+      this.mapOperation(type, status)
+    })
     this.initMap()
     this.addTaskArea()
-    this.initTollsBar()
   },
   methods: {
     initMap () {
@@ -43,7 +40,7 @@ export default {
       ).addTo(this.map)
       // 地图点击事件
       this.map.on('click', (e) => {
-        console.log('e', e.latlng)
+        console.log('e', e)
       })
     },
     addTaskArea () {
@@ -57,48 +54,84 @@ export default {
         ]
       }
       this.areaFea = L.geoJson(taskAreaFea, {
-        pmIgnore: false,
+        pmIgnore: true,
         style: {
           color: 'green',
           fillColor: '#f03',
           weight: 1,
           fillOpacity: 0.1
         }
+        // onEachFeature: (feature, layer) => {
+        //   layer.on({
+        //     click: (e) => {
+        //       console.log('layer', layer)
+        //       // this.map.removeLayer(layer)
+        //     }
+        //   })
+        // }
         // allowSelfIntersection: true
       })
       this.areaFea.addTo(this.map)
       L.PM.reInitLayer(this.areaFea)
       this.map.fitBounds(this.areaFea.getBounds(), {
-        paddingTopLeft: [0, -300]
+        paddingTopLeft: [0, 0]
       })
     },
-    initTollsBar () {
-      // 加载工具栏
-      // this.map.pm.addControls({
-      //   positions: {
-      //     draw: 'topright',
-      //     edit: 'topleft'
-      //   }
-      // })
-      // 自定义工具条按钮
-      this.map.pm.Toolbar.getBlockPositions({
-        name: 'customBottom',
-        block: ''
-      })
+    mapOperation (type, val) {
+      switch (type) {
+        case 'caijidian':
+          this.addData('caijidian', val)
+          break
+        case 'caijixian':
+          this.addData('caijixian', val)
+          break
+        case 'bianji':
+          this.editData(val)
+          break
+      }
     },
-    testOptions () {
+    editData (val) {
       // alert('试一试')
       // 开启绘制
       // this.map.pm.enableDraw('Polygon', { allowSelfIntersection: false })
       // 开启编辑
-      this.map.pm.toggleGlobalEditMode({
-        allowSelfIntersection: false,
-        preventMarkerRemoval: false,
-        preventVertexEdit: false
-      })
+      if (val) {
+        this.map.pm.toggleGlobalEditMode({
+          snappable: true,
+          snapDistance: 20,
+          snapMiddle: true,
+          templineStyle: {
+            color: 'green'
+          },
+          hintlineStyle: {
+            color: 'pink'
+          }
+        })
+      } else {
+        this.map.pm.disableGlobalEditMode()
+      }
     },
-    testOptions2 () {
-      this.map.pm.disableGlobalEditMode()
+    addData (type, val) {
+      if (!val) {
+        return
+      }
+      if (type === 'caijixian') {
+        this.map.pm.enableDraw('Line', { allowSelfIntersection: false })
+      } else {
+        const myIcon = L.icon({
+          iconUrl: require('../../assets/img/locationA.png'),
+          iconSize: [21, 21]
+          // iconAnchor: [13, 21]
+        })
+        this.map.pm.enableDraw('Marker', {
+          snappable: true,
+          snapDistance: 30,
+          snapMiddle: true,
+          markerStyle: {
+            icon: myIcon
+          }
+        })
+      }
     }
   }
 }
@@ -107,15 +140,5 @@ export default {
 .map-container {
   width: 100%;
   height: 100%;
-}
-.text-option-div {
-  height: 33px;
-  width: 33px;
-  background-color: pink;
-}
-.text-option-div2 {
-  height: 33px;
-  width: 33px;
-  background-color: blue;
 }
 </style>
