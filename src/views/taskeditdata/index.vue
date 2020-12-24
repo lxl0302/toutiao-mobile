@@ -12,6 +12,8 @@
     <div class="map-container">
       <task-details-map />
     </div>
+    <!-- 侧边导航栏 -->
+    <col-tab-bar @handleClick="handleClick"/>
     <!-- 下面导航栏 -->
     <tab-bar :tabData="tabData" />
   </div>
@@ -19,12 +21,14 @@
 
 <script>
 import taskDetailsMap from '@/views/map/taskDetailsMap'
+import colTabBar from '@/components/tabbar/colTabBar'
 import tabBar from '@/components/tabbar'
 
 export default {
   name: 'taskEditData',
   components: {
     taskDetailsMap,
+    colTabBar,
     tabBar
   },
   props: {
@@ -51,10 +55,6 @@ export default {
           iconText: '编辑'
         },
         {
-          iconName: 'gongju',
-          iconText: '工具'
-        },
-        {
           iconName: 'renwu',
           iconText: '任务'
         }
@@ -63,6 +63,7 @@ export default {
   },
   computed: {},
   mounted () {
+    console.log('222222')
   },
   methods: {
     goTaskArea () {
@@ -73,6 +74,9 @@ export default {
         }
       })
       console.log('从taskEditData传出的Data', this.taskData)
+    },
+    handleClick (type, val) {
+      console.log('类型', type, '值', val)
     }
   }
 }

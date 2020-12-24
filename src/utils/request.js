@@ -11,7 +11,7 @@ const request = axios.create({
   headers: {
     'TW-ProjectName': 'ansotest001',
     'TW-App': 'android',
-    'TW-Authorization': '43B6182A895A41A089E2652E2B520391'
+    'TW-Authorization': 'EC6E151FB5CE4FA8BC4D087811C188E0'
   }
 })
 

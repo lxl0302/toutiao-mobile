@@ -74,7 +74,7 @@ export default {
           headers: {
             'TW-ProjectName': 'ansotest001',
             'TW-App': 'android',
-            'TW-Authorization': '79FA607A95E645DD825BEF92A69B4AB8'
+            'TW-Authorization': '618036020DD5462C8F6026901A619687'
           },
           method: 'GET',
           url: 'outwork/server/task',
@@ -102,7 +102,7 @@ export default {
         headers: {
           'TW-ProjectName': 'ansotest001',
           'TW-App': 'android',
-          'TW-Authorization': '79FA607A95E645DD825BEF92A69B4AB8'
+          'TW-Authorization': '618036020DD5462C8F6026901A619687'
         },
         method: 'GET',
         url: 'outwork/server/task/user',

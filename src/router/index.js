@@ -8,7 +8,8 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import('@/views/home'),
+    // component: () => import('@/views/home'),
+    component: () => import('@/views/taskeditdata'),
     meta: { keepAlive: true }
   },
   // 任务详情

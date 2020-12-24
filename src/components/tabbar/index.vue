@@ -66,19 +66,19 @@ export default {
   width: 100%;
   height: 54px;
   background-color: #fff;
-}
-.flex-item {
-  font-size: 22px;
-  text-align: center;
-  .aoligei {
-    display: block;
-    font-size: 12px;
+  .flex-item {
+    font-size: 22px;
+    text-align: center;
+    .aoligei {
+      display: block;
+      font-size: 12px;
+    }
   }
-}
-.unclick {
-  color: #999999;
-}
-.onclick {
-  color: #4c7bfe;
+  .unclick {
+    color: #999999;
+  }
+  .onclick {
+    color: #4c7bfe;
+  }
 }
 </style>

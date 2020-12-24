@@ -7,6 +7,8 @@ import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import '@geoman-io/leaflet-geoman-free'
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css'
+import './mapExtent/marginfyingGlass'
+import './mapExtent/marginfyingGlass.css'
 
 export default {
   name: 'maps',
@@ -23,6 +25,7 @@ export default {
     })
     this.initMap()
     this.addTaskArea()
+    // this.ininFangDaJing()
   },
   methods: {
     initMap () {
@@ -36,11 +39,15 @@ export default {
         crs: L.CRS.EPSG3857
       })
       L.tileLayer(
-        'http://webrd01.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=7&x={x}&y={y}&z={z}'
+        'http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}'
       ).addTo(this.map)
       // 地图点击事件
       this.map.on('click', (e) => {
         console.log('e', e)
+      })
+      // 手指移动事件
+      this.map.on('move', (e) => {
+        console.log('move,center:', this.map.getCenter())
       })
     },
     addTaskArea () {
@@ -132,6 +139,26 @@ export default {
           }
         })
       }
+    },
+    ininFangDaJing () {
+      const magnifyingGlass = L.magnifyingGlass({
+        zoomOffset: 3,
+        layers: [
+          L.tileLayer('http://b.tile.openstreetmap.org/{z}/{x}/{y}.png')
+          // this.areaFea
+        ],
+        // fixedPosition: true,
+        latLng: [39.550339, 116.114129]
+      })
+      this.map.addLayer(magnifyingGlass)
+      this.map.on('contextmenu', (mouseEvt) => {
+        console.log('mouseEvt', mouseEvt)
+        // if (this.map.hasLayer(magnifyingGlass)) {
+        //   return 1
+        // }
+        // this.map.addLayer(magnifyingGlass)
+        // magnifyingGlass.setLatLng(mouseEvt.latlng)
+      })
     }
   }
 }

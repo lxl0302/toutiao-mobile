@@ -69,7 +69,7 @@ export default {
         headers: {
           'TW-ProjectName': 'ansotest001',
           'TW-App': 'android',
-          'TW-Authorization': '79FA607A95E645DD825BEF92A69B4AB8'
+          'TW-Authorization': '618036020DD5462C8F6026901A619687'
         },
         method: 'GET',
         url: 'outwork/server/taskdetail',
@@ -77,6 +77,7 @@ export default {
           id: taskId
         }
       })
+      console.log('任务详情Data', data)
       this.detailsIsShow = true
       this.areaGeoData = data.data.area.geomapp
       this.areaDetaisData = data.data.task
